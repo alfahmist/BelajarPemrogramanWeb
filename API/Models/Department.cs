@@ -9,6 +9,7 @@ namespace API.Models
     [Table("TB_M_Department")]
     public class Department
     {
+        [key]
         public int id { get; set; }
         public string name { get; set; }
         public int Division_id { get; set; }

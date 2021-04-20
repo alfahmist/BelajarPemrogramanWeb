@@ -17,44 +17,83 @@ namespace API.Controllers
         public IHttpActionResult Post(Department department)
         {
             var post = departmentRepository.Insert(department);
-            return Ok(post);
+            if(post == 1)
+            {
+                return Ok("Data Berhasil Dimasukkan");
+            }
+
+            return BadRequest("Data Gagal DiMasukkan");
         }
 
         //GET
         public IHttpActionResult get()
         {
             var get = departmentRepository.GetDepartments();
-            return Ok(get);
+            if (get.Count() == 0)
+            {
+                return BadRequest("Belum input apa apa");
+            }
+            else
+            {
+                return Ok(get);
+            }
         }
 
         //GET BY ID
         public IHttpActionResult getById(int id)
         {
             var get = departmentRepository.GetDepartment(id);
-            return Ok(get);
+            if (get == null)
+            {
+                return BadRequest("Data Tidak Ditemukan");
+            } else
+            {
+                return Ok(get);
+            }
         }
 
         //DELETE
         public IHttpActionResult Delete(int id)
         {
-            var delete = departmentRepository.Delete(id);
-            return Ok(delete);
+
+            var get = departmentRepository.GetDepartment(id);
+            if (get == null)
+            {
+                return BadRequest("Data Tidak Ditemukan");
+            }
+            else
+            {
+                departmentRepository.Delete(id);
+                return Ok("Berhasil Delete");
+            }
+           
         }
 
         //UPDATE
-        public IHttpActionResult PutDivision(int id, Department department)
+        public IHttpActionResult PutDepartment(int id, Department department)
         {
-            if (!ModelState.IsValid)
+            try { 
+                var update = departmentRepository.Update(id, department);
+                if (update == 1)
+                {
+                    // kalau datanya beda
+                    return Ok("Data berhasil diubah");
+                }
+                else 
+                {
+                    // kalau datanya sama
+                    return Ok("Data berhasil diubah : datanya sama");        
+                }
+            } catch (System.NullReferenceException)
             {
-                return BadRequest(ModelState);
-            }
-
-            if (id != department.id)
+                // Id nya tidak ada
+                return BadRequest("Data tidak ditemukan");
+            } 
+            catch (System.Data.Entity.Infrastructure.DbUpdateException)
             {
-                return BadRequest("Ids did not match");
+                // Nama Kolom Beda
+                return BadRequest("Nama Kolom Beda");
             }
-            var update = departmentRepository.Update(id, department);
-            return Ok(update);
         }
 
     }

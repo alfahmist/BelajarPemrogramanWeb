@@ -22,7 +22,6 @@ namespace API.Repositories
 
         public IEnumerable<Department> GetDepartments()
         {
-
             var get = context.Departments.ToList();
             return get;
         }
