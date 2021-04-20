@@ -9,13 +9,13 @@ namespace API.Repositories.Interfaces
 {
     interface IDivisionRepository
     {
-        IEnumerable<Division> GetDivions();
+        IEnumerable<Division> GetDivisions();
 
         Division GetDivision(int id);
 
-        int Insert(Division divison)
-        int Update(Division division);
-        int Delete(Division division);
+        int Insert(Division division);
+        int Update(int id, Division division);
+        int Delete(int id);
 
     }
 }
