@@ -10,9 +10,7 @@ namespace API.Repositories.Interfaces
     interface IDivisionRepository
     {
         IEnumerable<Division> GetDivisions();
-
         Division GetDivision(int id);
-
         int Insert(Division division);
         int Update(int id, Division division);
         int Delete(int id);
