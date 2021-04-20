@@ -21,7 +21,7 @@ namespace API.Controllers
             {
                 return Ok("Data Berhasil Dimasukkan");
             }
-
+            // run kalau apa ?
             return BadRequest("Data Gagal DiMasukkan");
         }
 
@@ -55,18 +55,16 @@ namespace API.Controllers
         //DELETE
         public IHttpActionResult Delete(int id)
         {
-
+            // pilh id yang di delete
             var get = departmentRepository.GetDepartment(id);
             if (get == null)
             {
                 return BadRequest("Data Tidak Ditemukan");
             }
-            else
-            {
+            else {
                 departmentRepository.Delete(id);
                 return Ok("Berhasil Delete");
             }
-           
         }
 
         //UPDATE
@@ -92,7 +90,7 @@ namespace API.Controllers
             catch (System.Data.Entity.Infrastructure.DbUpdateException)
             {
                 // Nama Kolom Beda
-                return BadRequest("Nama Kolom Beda");
+                return BadRequest("Harap cek nama Kolom : Nama kolom beda");
             }
         }
 
