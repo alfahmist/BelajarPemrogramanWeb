@@ -168,13 +168,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202104191018257_first_migration.cs" />
-    <Compile Include="Migrations\202104191018257_first_migration.designer.cs">
-      <DependentUpon>202104191018257_first_migration.cs</DependentUpon>
+    <Compile Include="Migrations\202104200439065_first_migration.cs" />
+    <Compile Include="Migrations\202104200439065_first_migration.designer.cs">
+      <DependentUpon>202104200439065_first_migration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202104191026554_second_migration.cs" />
-    <Compile Include="Migrations\202104191026554_second_migration.designer.cs">
-      <DependentUpon>202104191026554_second_migration.cs</DependentUpon>
+    <Compile Include="Migrations\202104200441011_second_migration.cs" />
+    <Compile Include="Migrations\202104200441011_second_migration.designer.cs">
+      <DependentUpon>202104200441011_second_migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Department.cs" />
@@ -234,6 +234,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Repositories\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -265,11 +266,11 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104191018257_first_migration.resx">
-      <DependentUpon>202104191018257_first_migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104200439065_first_migration.resx">
+      <DependentUpon>202104200439065_first_migration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104191026554_second_migration.resx">
-      <DependentUpon>202104191026554_second_migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104200441011_second_migration.resx">
+      <DependentUpon>202104200441011_second_migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

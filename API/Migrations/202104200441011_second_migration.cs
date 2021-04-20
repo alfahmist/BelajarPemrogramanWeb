@@ -8,24 +8,24 @@
         public override void Up()
         {
             CreateTable(
-                "dbo.Departments",
+                "dbo.TB_M_Department",
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
                         name = c.String(),
-                        divisionId = c.Int(nullable: false),
+                        Division_id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.TB_M_Division", t => t.divisionId, cascadeDelete: true)
-                .Index(t => t.divisionId);
+                .ForeignKey("dbo.TB_M_Division", t => t.Division_id, cascadeDelete: true)
+                .Index(t => t.Division_id);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Departments", "divisionId", "dbo.TB_M_Division");
-            DropIndex("dbo.Departments", new[] { "divisionId" });
-            DropTable("dbo.Departments");
+            DropForeignKey("dbo.TB_M_Department", "Division_id", "dbo.TB_M_Division");
+            DropIndex("dbo.TB_M_Department", new[] { "Division_id" });
+            DropTable("dbo.TB_M_Department");
         }
     }
 }
