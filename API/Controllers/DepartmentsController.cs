@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace API.Controllers
 {
-    public class DepartmentController : ApiController
+    public class DepartmentsController : ApiController
     {
         DepartmentRepository departmentRepository = new DepartmentRepository();
 
