@@ -19,13 +19,6 @@ namespace API
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
-            config.Routes.MapHttpRoute(
-               name: "EditApi",
-               routeTemplate: "API/{controller}/{action}/{id}",
-               defaults: new { id = RouteParameter.Optional}
-           );
-
         }
     }
 }
