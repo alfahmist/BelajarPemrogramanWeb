@@ -16,13 +16,14 @@ namespace API.Controllers
         //POST
         public IHttpActionResult Post(Department department)
         {
-            var post = departmentRepository.Insert(department);
-            if(post == 1)
+            try { 
+                var post = departmentRepository.Insert(department);
+                return Ok("Data  Dimasukkan");
+               
+            } catch (System.Data.Entity.Infrastructure.DbUpdateException)
             {
-                return Ok("Data Berhasil Dimasukkan");
+                return BadRequest("Data Gagal DiMasukkan");
             }
-            // run kalau apa ?
-            return BadRequest("Data Gagal DiMasukkan");
         }
 
         //GET
