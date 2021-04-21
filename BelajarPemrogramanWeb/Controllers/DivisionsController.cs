@@ -34,7 +34,7 @@ namespace BelajarPemrogramanWeb.Controllers
                 readTask.Wait();
                 divisions = readTask.Result;
             }
-
+    
             return new JsonResult
             {
                 Data = divisions,

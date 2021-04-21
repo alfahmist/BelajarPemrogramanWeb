@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <table id="example" class="table table-bordered table-striped table-hover" style="width:100%">
+    <table id="myTable" class="table table-bordered table-striped table-hover" style="width:100%">
         <thead class="thead-dark">
             <tr>
                 <th>No</th>
@@ -46,6 +46,7 @@
             </tr>
         </thead>
         <tbody>
+            <!--       
             <tr>
                 <td>1.</td>
                 <td>Supriadi</td>
@@ -60,21 +61,8 @@
                     </button>
                 </td>
             </tr>
-            <tr>
-                <td scope="row">3.</td>
-                <td>Miftah</td>
-                <td>
-                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit">
-                        <i class="bi bi-pencil-square"></i>
-                        Edit
-                    </button>
-                    <button type="button" class="btn btn-danger" data-toggle="modal">
-                        <i class="bi bi-trash"></i>
-                        Delete
-                    </button>
-
-                </td>
-            </tr>
+                -->
+          
         </tbody>
     </table>
 </div>
@@ -92,8 +80,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 
-
-
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -103,21 +89,20 @@
 
     <script>
         $(document).ready(function () {
-            $('#example').DataTable(
-
+            $('#myTable').DataTable(
                 {
                     "ajax": {
-                        url: "Divisions/LoadDivision()",
+                        url: "Divisions/LoadDivision",
                         type: "GET",
                         dataType: "json",
-                        dataSrc: "",
-                        
+                        dataSrc: ""
                     },
                     "columns": [
-                        {"data" : "id"},
-                        {"data" : "name"},
-                        {"data" : "about"},
-                    ]
+                        { "data": "id" },
+                        { "data": "name" },
+                        { "data": "about" }
+
+                    ]   
                 }
             );
         });
