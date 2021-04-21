@@ -22,13 +22,13 @@ namespace API.Repositories
 
         public IEnumerable<Department> GetDepartments()
         {
-            var get = context.Departments.ToList();
+            var get = context.Departments.Include("Division").ToList();
             return get;
         }
 
         public Department GetDepartment(int id)
         {
-            var get = context.Departments.Find(id);
+            var get = context.Departments.Include("Division").FirstOrDefault(d => d.id == id);
             return get;
         }
 

@@ -18,21 +18,28 @@ namespace API.Controllers
         {
             try { 
                 var post = departmentRepository.Insert(department);
-                return Ok("Data  Dimasukkan");
-               
-            } catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                if(post == 1)
+                {
+                    return Ok("Data Berhasil Dimasukkan");
+                }
+                else
+                {
+                    return BadRequest("Error");
+                }
+            } 
+            catch (System.Data.Entity.Infrastructure.DbUpdateException)
             {
-                return BadRequest("Data Gagal DiMasukkan");
+                return BadRequest("Data Gagal Dimasukkan : Nama Kolom Salah ");
             }
         }
 
         //GET
-        public IHttpActionResult get()
+        public IHttpActionResult Get()
         {
             var get = departmentRepository.GetDepartments();
             if (get.Count() == 0)
             {
-                return BadRequest("Belum input apa apa");
+                return Content(HttpStatusCode.NotFound, "Data tidak ditemukan");
             }
             else
             {
@@ -41,16 +48,14 @@ namespace API.Controllers
         }
 
         //GET BY ID
-        public IHttpActionResult getById(int id)
+        public IHttpActionResult GetById(int id)
         {
             var get = departmentRepository.GetDepartment(id);
             if (get == null)
             {
-                return BadRequest("Data Tidak Ditemukan");
-            } else
-            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotFound,($"Data dengan id = {id} tidak ditemukan")));
+            } 
                 return Ok(get);
-            }
         }
 
         //DELETE
@@ -60,7 +65,7 @@ namespace API.Controllers
             var get = departmentRepository.GetDepartment(id);
             if (get == null)
             {
-                return BadRequest("Data Tidak Ditemukan");
+                return Content(HttpStatusCode.NotFound, "Data tidak ditemukan");
             }
             else {
                 departmentRepository.Delete(id);
@@ -69,7 +74,9 @@ namespace API.Controllers
         }
 
         //UPDATE
-        public IHttpActionResult PutDepartment(int id, Department department)
+        [HttpPut]
+        [ActionName("Edit")]
+        public IHttpActionResult Put(int id, Department department)
         {
             try { 
                 var update = departmentRepository.Update(id, department);
@@ -86,12 +93,12 @@ namespace API.Controllers
             } catch (System.NullReferenceException)
             {
                 // Id nya tidak ada
-                return BadRequest("Data tidak ditemukan");
+                return Content(HttpStatusCode.NotFound, "Data tidak ditemukan");
             } 
             catch (System.Data.Entity.Infrastructure.DbUpdateException)
             {
                 // Nama Kolom Beda
-                return BadRequest("Harap cek nama Kolom : Nama kolom beda");
+                return BadRequest("Data gagal diubah");
             }
         }
 

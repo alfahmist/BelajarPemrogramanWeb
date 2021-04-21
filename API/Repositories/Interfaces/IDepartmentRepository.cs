@@ -9,7 +9,6 @@ namespace API.Repositories.Interfaces
 {
     interface IDepartmentRepository
     {
-
         IEnumerable<Department> GetDepartments();
         Department GetDepartment(int id);
         int Insert(Department department);
