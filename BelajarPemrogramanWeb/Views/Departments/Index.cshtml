@@ -5,7 +5,7 @@
 }
 
 <div class="container">
-    <h1>Divisions</h1>
+    <h1>Departments</h1>
     <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#modalInsert">
         <i class="bi bi-plus-square"></i>
         Add
@@ -58,7 +58,7 @@
                             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">About</label>
+                            <label for="exampleInputEmail1">Division</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                         </div>
                     </div>
@@ -70,19 +70,22 @@
             </div>
         </div>
     </div>
+
     <table id="myTable" class="table table-bordered table-striped table-hover" style="width:100%">
         <thead class="thead-dark">
             <tr>
                 <th>No</th>
                 <th>Name</th>
-                <th>About</th>
+                <th>Division</th>
                 <th>Action</th>
-
             </tr>
         </thead>
         <tbody>
-                    <!--
-                        
+            <!--
+            <tr>
+                <td>1.</td>
+                <td>Supriadi</td>
+                <td>
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit">
                         <i class="bi bi-pencil-square"></i>
                         Edit
@@ -91,8 +94,9 @@
                         <i class="bi bi-trash"></i>
                         Delete
                     </button>
-                    -->
-
+                </td>
+            </tr>
+                -->
 
         </tbody>
     </table>
@@ -119,36 +123,33 @@
     -->
 
     <script>
-       $(document).ready(function () {
-       var table = $('#myTable').DataTable(
+        $(document).ready(function () {
+            var table = $('#myTable').DataTable(
                 {
                     "ajax": {
-                        url: "Divisions/LoadDivision",
+                        url: "Departments/LoadDepartment",
                         type: "GET",
                         dataType: "json",
                         dataSrc: ""
                     },
                     "columns": [
-                        { "data": null},
+                        { "data": null },
                         { "data": "name" },
-                        { "data": "about" },
+                        { "data": "Division_id" },
                         {
                             "data": null,
-                            "defaultContent": '<a class="btn btn-warning"  data-toggle="modal" data-target="#modalEdit"><i class= "bi bi-pencil-square" ></i>Edit </a> | <a class="btn btn-danger"><i class="bi bi-trash"></i> Delete </a>',
-                            "orderable" : false
+                            "defaultContent": '<a class="btn btn-warning" data-toggle="modal" data-target="#modalEdit"><i class= "bi bi-pencil-square" ></i>Edit </a> | <a class="btn btn-danger"><i class="bi bi-trash"></i> Delete </a>',
+                            "orderable": false
                         }
-                       
-                    ]   
+                    ]
                 }
-           );
-           table.on('order.dt search.dt', function () {
-               table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
-                   cell.innerHTML = i + 1;
-               });
-           }).draw();
+            );
+            table.on('order.dt search.dt', function () {
+                table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
         });
-      
-
+        
     </script>
 }
-

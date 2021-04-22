@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace BelajarPemrogramanWeb.Controllers
 {
-    public class DivisionsController : Controller
+    public class DepartmentsController : Controller
     {
         readonly HttpClient client = new HttpClient
         {
@@ -21,23 +21,23 @@ namespace BelajarPemrogramanWeb.Controllers
             return View();
         }
 
-        public JsonResult LoadDivision()
+        public JsonResult LoadDepartment()
         {
-            IEnumerable<Division> divisions = null;
-            var responseTask = client.GetAsync("Divisions");
+            IEnumerable<Department> departments = null;
+            var responseTask = client.GetAsync("Departments");
             responseTask.Wait();
             var result = responseTask.Result;
             // status code
-            if(result.IsSuccessStatusCode)
+            if (result.IsSuccessStatusCode)
             {
-                var readTask = result.Content.ReadAsAsync<IList<Division>>();
+                var readTask = result.Content.ReadAsAsync<IList<Department>>();
                 readTask.Wait();
-                divisions = readTask.Result;
+                departments = readTask.Result;
             }
-    
+
             return new JsonResult
             {
-                Data = divisions,
+                Data = departments,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
